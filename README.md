@@ -193,16 +193,72 @@ PATCH /admin/users/:id/role
 
 ## 🧠 Design Highlights
 **Soft Deletes**
+
 Users & posts are soft-deleted, preserving activity logs.
+
 **RBAC Middleware**
+
 Strict permission handling for User / Admin / Owner.
+
 **Blocking Logic**
+
 Feed hides posts of users who blocked the requester.
+
 **Activity Tracking**
+
 Human-readable activity messages logged for every action.
+
 **Rate Limiting**
+
 Prevents brute-force attacks on /auth/* routes.
 
+----
+
+## 🏗️ System Architecture
+
+```mermaid
+flowchart TD
+
+    Client[User / Postman / Frontend] -->|HTTP Requests| API[Express Server]
+
+    subgraph Middleware
+        Auth[Auth Middleware]
+        Role[Role Middleware]
+        Rate[Rate Limiter]
+        Error[Global Error Handler]
+    end
+
+    API --> Auth
+    API --> Role
+    API --> Rate
+    Auth --> Controllers
+    Role --> Controllers
+    Rate --> Controllers
+    Controllers --> Error
+
+    subgraph Controllers
+        AuthCtrl[Auth Controller]
+        UserCtrl[User Controller]
+        PostCtrl[Post Controller]
+        ActivityCtrl[Activity Controller]
+        AdminCtrl[Admin Controller]
+    end
+
+    AuthCtrl --> DB[(MongoDB)]
+    UserCtrl --> DB
+    PostCtrl --> DB
+    ActivityCtrl --> DB
+    AdminCtrl --> DB
+
+    DB --> Models[(Mongoose Models)]
+    Models --> UserModel[User]
+    Models --> PostModel[Post]
+    Models --> ActModel[Activity]
+
+    ActivityCtrl --> Log[(Activity Log)]
+```
+
+----
 ## 🚀 Deployment (Render)
 ### Build Command
 npm install
