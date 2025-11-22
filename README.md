@@ -94,7 +94,9 @@ http://localhost:4000/api
 
 ## Deployed API Base URL
 https://inkle-social-feed-backend.onrender.com/api
+
 Use this in Postman as:
+
 {{baseUrl}} = https://inkle-social-feed-backend.onrender.com/api
 
 ---
