@@ -202,7 +202,7 @@ Human-readable activity messages logged for every action.
 Prevents brute-force attacks on /auth/* routes.
 
 ## 🚀 Deployment (Render)
-###Build Command
+### Build Command
 npm install
 
 ### Start Command
