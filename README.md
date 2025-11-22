@@ -97,15 +97,16 @@ https://inkle-social-feed-backend.onrender.com/api
 Use this in Postman as:
 {{baseUrl}} = https://inkle-social-feed-backend.onrender.com/api
 
+---
 
 ## 📚 API Routes Overview
-###🔐 Auth Routes
+### 🔐 Auth Routes
 | Method | Endpoint      | Description        |
 |--------|---------------|-------------------|
 | POST   | /auth/signup  | Create new user   |
 | POST   | /auth/login   | Login + JWT token |
 
-###👤 User Routes
+### 👤 User Routes
 | Method | Endpoint              | Description       |
 |--------|----------------------|------------------|
 | GET    | /users/me            | Get own profile  |
@@ -115,7 +116,7 @@ Use this in Postman as:
 | POST   | /users/:id/block     | Block user       |
 | POST   | /users/:id/unblock   | Unblock user     |
 
-###📝 Post Routes
+### 📝 Post Routes
 | Method | Endpoint            | Description  |
 |--------|--------------------|--------------|
 | POST   | /posts             | Create post  |
@@ -123,7 +124,7 @@ Use this in Postman as:
 | POST   | /posts/:id/unlike  | Unlike post  |
 | GET    | /posts/feed        | Get feed     |
 
-###📜 Activity Routes
+### 📜 Activity Routes
 | Method | Endpoint          | Description          |
 |--------|------------------|---------------------|
 | GET    | /activity/wall   | Global activity log |
@@ -136,9 +137,9 @@ Use this in Postman as:
 | POST   | /admin/posts/:id/remove-like    | Admin/Owner | Remove like      |
 | PATCH  | /admin/users/:id/role           | Owner       | Change user role |
 
-##🧪 Testing With Postman
+## 🧪 Testing With Postman
 
-###The repository includes:
+### The repository includes:
 InkleSocialFeed.postman_collection.json
 Steps:
 Open Postman
@@ -148,8 +149,8 @@ Go to Variables
 baseUrl is pre-filled
 Leave token empty (login will generate a JWT)
 
-##🧪 Full Testing Flow
-###Step 1 — Signup User A
+## 🧪 Full Testing Flow
+### Step 1 — Signup User A
 {
   "name": "Alice",
   "username": "alice",
@@ -158,26 +159,26 @@ Leave token empty (login will generate a JWT)
   "bio": "Hi!"
 }
 
-###Step 2 — Login & Save Token
+### Step 2 — Login & Save Token
 Set the token in Postman variables.
 
-###Step 3 — Create a Post
+### Step 3 — Create a Post
 {
   "content": "Hello world!",
   "mediaUrl": ""
 }
 
-###Step 4 — Signup User B
+### Step 4 — Signup User B
 Login and get their ID.
 
-###Step 5
+### Step 5
 Follow / Block / Unfollow
-###Step 6
+### Step 6
 Activity Wall
 GET /activity/wall
 
 
-###Expected output:
+### Expected output:
 
 "alice made a post"
 
@@ -185,10 +186,10 @@ GET /activity/wall
 
 "bob liked alice's post"
 
-###Step 7 — Admin / Owner Testing
+### Step 7 — Admin / Owner Testing
 PATCH /admin/users/:id/role
 
-##🧠 Design Highlights
+## 🧠 Design Highlights
 **Soft Deletes**
 Users & posts are soft-deleted, preserving activity logs.
 **RBAC Middleware**
@@ -200,21 +201,21 @@ Human-readable activity messages logged for every action.
 **Rate Limiting**
 Prevents brute-force attacks on /auth/* routes.
 
-##🚀 Deployment (Render)
+## 🚀 Deployment (Render)
 ###Build Command
 npm install
 
-###Start Command
+### Start Command
 npm start
 
-###Environment Variables
+### Environment Variables
 Add these in Render:
 PORT
 MONGO_URI
 JWT_SECRET
 JWT_EXPIRES_IN
 
-##👤Author
+## 👤Author
 V Sanjana Devi
 Backend Developer — Inkle Internship Assignment
 GitHub:https://github.com/Sanjana-Devi-67/Inkle_assessment/
